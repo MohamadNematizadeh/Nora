@@ -1,0 +1,734 @@
+
+
+<!DOCTYPE html>
+<html lang="fa" dir="rtl" id="html-root">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="نورا ارائه‌دهنده خدمات حرفه‌ای طراحی وب، توسعه اپلیکیشن، و هوش مصنوعی برای پروژه‌های داخلی و خارجی">
+  <meta name="keywords" content="طراحی وب, توسعه اپلیکیشن, هوش مصنوعی, دیجیتال مارکتینگ, نورا">
+  <meta property="og:title" content="نورا - راه‌حل‌های دیجیتال خلاقانه">
+  <meta property="og:image" content="path/to/og-image.webp">
+  <title>نورا - راه‌حل‌های دیجیتال خلاقانه | Noura - Creative Digital Solutions</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/TextPlugin.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;700;900&family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Vazirmatn" as="style">
+  <style>
+    body {
+      font-family: 'Vazirmatn', 'Poppins', sans-serif;
+      scroll-behavior: smooth;
+      background-color: #f9fafb;
+      transition: background-color 0.3s ease;
+    }
+    .dark {
+      background-color: #1f2937;
+    }
+    .dark .text-gray-700 { color: #d1d5db; }
+    .dark .bg-white { background-color: #1f2937; }
+    .dark .bg-gray-50 { background-color: #111827; }
+    .dark .glass { background: rgba(31, 41, 55, 0.3); border-color: rgba(255, 255, 255, 0.1); }
+    .glass {
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+      transition: transform 0.4s ease, box-shadow 0.4s ease, background 0.4s ease;
+    }
+    .glass:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 12px 40px rgba(34, 211, 238, 0.3);
+      background: rgba(255, 255, 255, 0.25);
+    }
+    .hero-bg {
+      position: relative;
+      overflow: hidden;
+      min-height: 100vh;
+    }
+    .navbar-link {
+      position: relative;
+      transition: color 0.3s ease, transform 0.3s ease;
+    }
+    .navbar-link::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: -4px;
+      right: 0;
+      background-color: #22d3ee;
+      transition: width 0.3s ease;
+    }
+    .navbar-link:hover::after {
+      width: 100%;
+    }
+    .navbar-link:hover, .navbar-link:focus {
+      transform: scale(1.1);
+      outline: 2px solid #22d3ee;
+      outline-offset: 2px;
+    }
+    .cta-button {
+      transition: all 0.4s ease;
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+    }
+    .cta-button::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -150%;
+      width: 150%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+      transition: left 0.4s ease;
+    }
+    .cta-button:hover::after {
+      left: 150%;
+    }
+    .cta-button:hover, .cta-button:focus {
+      transform: scale(1.1);
+      box-shadow: 0 8px 25px rgba(34, 211, 238, 0.5);
+      outline: 2px solid #22d3ee;
+      outline-offset: 2px;
+    }
+    .animate-image {
+      transition: transform 0.5s ease, opacity 0.5s ease, filter 0.5s ease;
+      object-fit: cover;
+      width: 100%;
+    }
+    .animate-image:hover {
+      transform: scale(1.1) rotate(3deg);
+      opacity: 0.9;
+      filter: brightness(110%);
+    }
+    .section-title {
+      position: relative;
+      display: inline-block;
+    }
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      right: 0;
+      width: 60%;
+      height: 4px;
+      background: linear-gradient(to left, #22d3ee, #06b6d4);
+      transition: width 0.4s ease;
+    }
+    .section-title:hover::after {
+      width: 100%;
+    }
+    #particles {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+    }
+    .sticky-cta {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      z-index: 50;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+      100% { transform: scale(1); }
+    }
+    [dir="ltr"] {
+      font-family: 'Poppins', sans-serif;
+      text-align: left;
+    }
+    [dir="ltr"] .navbar-link::after {
+      left: 0;
+      right: auto;
+    }
+    [dir="ltr"] .section-title::after {
+      left: 0;
+      right: auto;
+    }
+    .parallax {
+      background-attachment: fixed;
+      background-position: center;
+      background-size: cover;
+      position: relative;
+    }
+  </style>
+</head>
+<body>
+  <div class="fixed top-4 right-4 z-50 hidden">
+    <button id="theme-toggle" class="bg-[#22d3ee] text-white px-3 py-2 rounded-full hover:bg-[#06b6d4] transition" aria-label="تغییر تم به تیره یا روشن">
+      <i class="fas fa-moon"></i>
+    </button>
+    <button id="lang-toggle" class="bg-[#22d3ee] text-white px-3 py-2 rounded-full hover:bg-[#06b6d4] transition" aria-label="تغییر زبان">
+      <span class="flag">🇮🇷</span> <span id="lang-text">English</span>
+    </button>
+  </div>
+
+
+  <!-- Sticky CTA -->
+
+  <!-- Navbar -->
+  <nav class="bg-white  shadow-xl fixed w-full z-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between h-16 items-center">
+        <div class="flex-shrink-0">
+          <a href="#"><img src="image\Layer 1 (2).png" alt="لوگو نورا | Noura Logo" class="h-14 gsap-logo" loading="lazy"></a>
+        </div>
+        <div class="hidden md:flex space-x-8 space-x-reverse items-center">
+          <a href="#home" class="text-[#22d3ee] hover:text-[#06b6d4] navbar-link text-lg font-semibold" data-fa="صفحه اصلی" data-en="Home">صفحه اصلی</a>
+          <a href="#services" class="text-[#22d3ee] hover:text-[#06b6d4] navbar-link text-lg font-semibold" data-fa="خدمات" data-en="Services">خدمات</a>
+          <a href="#portfolio" class="text-[#22d3ee] hover:text-[#06b6d4] navbar-link text-lg font-semibold" data-fa="نمونه‌کار" data-en="Portfolio">نمونه‌کار</a>
+          <a href="#why-us" class="text-[#22d3ee] hover:text-[#06b6d4] navbar-link text-lg font-semibold" data-fa="چرا ما؟" data-en="Why Us?">چرا ما؟</a>
+          <!-- <a href="#contact" class="text-[#22d3ee] hover:text-[#06b6d4] navbar-link text-lg font-semibold" data-fa="تماس با ما" data-en="Contact">تماس با ما</a> -->
+          <!-- <a href="#blog" class="text-[#22d3ee] hover:text-[#06b6d4] navbar-link text-lg font-semibold" data-fa="وبلاگ" data-en="Blog">وبلاگ</a> -->
+        </div>
+        <div class="md:hidden">
+          <button id="menu-toggle" class="text-[#22d3ee] focus:outline-none" aria-label="باز کردن منوی موبایل">
+            <svg class="h-8 w-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div id="mobile-menu" class="hidden md:hidden bg-white dark:bg-gray-900 shadow-lg">
+      <div class="px-4 pt-2 pb-3 space-y-2">
+        <a href="#home" class="block text-[#22d3ee] hover:text-[#06b6d4] text-lg font-semibold" data-fa="صفحه اصلی" data-en="Home">صفحه اصلی</a>
+        <a href="#services" class="block text-[#22d3ee] hover:text-[#06b6d4] text-lg font-semibold" data-fa="خدمات" data-en="Services">خدمات</a>
+        <a href="#portfolio" class="block text-[#22d3ee] hover:text-[#06b6d4] text-lg font-semibold" data-fa="نمونه‌کار" data-en="Portfolio">نمونه‌کار</a>
+        <a href="#why-us" class="block text-[#22d3ee] hover:text-[#06b6d4] text-lg font-semibold" data-fa="چرا ما؟" data-en="Why Us?">چرا ما؟</a>
+        <!-- <a href="#contact" class="block text-[#22d3ee] hover:text-[#06b6d4] text-lg font-semibold" data-fa="تماس با ما" data-en="Contact">تماس با ما</a> -->
+        <!-- <a href="#blog" class="block text-[#22d3ee] hover:text-[#06b6d4] text-lg font-semibold" data-fa="وبلاگ" data-en="Blog">وبلاگ</a> -->
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section id="home" class="hero-bg flex items-center justify-center relative min-h-screen">
+
+    <canvas id="particles" class="absolute top-0 left-0 w-full h-full z-1"></canvas>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid md:grid-cols-2 gap-8 hero-content relative z-10 items-center">
+      <div class="text-gray-800 text-center md:text-right">
+        <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 gsap-hero-title" data-fa="راه‌حل‌های دیجیتال خلاقانه" data-en="Creative Digital Solutions">راه‌حل‌های دیجیتال خلاقانه</h1>
+        <p class="text-lg sm:text-xl md:text-2xl mb-8 gsap-hero-text" data-fa="ما با نوآوری و تخصص، برند شما را به سطح جهانی می‌رسانیم." data-en="We elevate your brand to a global level with innovation and expertise.">ما با نوآوری و تخصص، برند شما را به سطح جهانی می‌رسانیم.</p>
+        <a href="#consult" class="bg-gradient-to-r from-[#22d3ee] to-[#06b6d4] text-white px-8 py-4 rounded-full hover:shadow-xl cta-button text-lg font-semibold gsap-hero-button" data-fa="شروع پروژه" data-en="Start Project">شروع پروژه</a>
+      </div>
+      <div class="flex justify-center items-center">
+        <img src="image\image-web-design-01.png" alt="نورا خلاقیت | Noura Creativity" class="gsap-hero-image w-full max-w-md" loading="lazy">
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Us Section -->
+  <section id="why-us" class="py-24 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-5xl font-bold text-center text-[#22d3ee] mb-16 section-title gsap-section-title" data-fa="چرا نورا؟" data-en="Why Noura?">چرا نورا؟</h2>
+      <div class="grid md:grid-cols-3 gap-10">
+        <div class="glass p-8 rounded-xl text-center">
+          <i class="fas fa-brain text-4xl text-[#22d3ee] mb-4"></i>
+          <h3 class="text-2xl font-semibold text-[#22d3ee] mb-4" data-fa="تخصص" data-en="Expertise">تخصص</h3>
+          <p class="text-gray-700" data-fa="تیمی از متخصصان با تجربه جهانی." data-en="A team of experts with global experience.">تیمی از متخصصان با تجربه جهانی.</p>
+        </div>
+        <div class="glass p-8 rounded-xl text-center">
+          <i class="fas fa-lightbulb text-4xl text-[#22d3ee] mb-4"></i>
+          <h3 class="text-2xl font-semibold text-[#22d3ee] mb-4" data-fa="نوآوری" data-en="Innovation">نوآوری</h3>
+          <p class="text-gray-700" data-fa="راه‌حل‌های خلاقانه و به‌روز." data-en="Creative and up-to-date solutions.">راه‌حل‌های خلاقانه و به‌روز.</p>
+        </div>
+        <div class="glass p-8 rounded-xl text-center">
+          <i class="fas fa-headset text-4xl text-[#22d3ee] mb-4"></i>
+          <h3 class="text-2xl font-semibold text-[#22d3ee] mb-4" data-fa="پشتیبانی" data-en="Support">پشتیبانی</h3>
+          <p class="text-gray-700" data-fa="پشتیبانی 24/7 برای پروژه‌های شما." data-en="24/7 support for your projects.">پشتیبانی 24/7 برای پروژه‌های شما.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Section -->
+  <section id="services" class="py-24 bg-gray-50 ">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-5xl font-bold text-center text-[#22d3ee] mb-16 section-title gsap-section-title" data-fa="خدمات ما" data-en="Our Services">خدمات ما</h2>
+      <div class="grid md:grid-cols-3 gap-10">
+        <div class="glass p-8 rounded-xl hover-glass text-center gsap-service-card">
+          <i class="fas fa-globe fa-3x text-[#22d3ee] mb-4"></i>
+          <h3 class="text-2xl font-semibold text-[#22d3ee] mb-4">طراحی وب‌سایت حرفه‌ای و سئو</h3>
+          <p class="text-gray-700">وب‌سایت‌هایی مدرن، ریسپانسیو و بهینه‌شده برای موتورهای جستجو با استفاده از فناوری‌های پیشرفته برای برند شما را در دنیای دیجیتال برجسته می‌کنیم و رتبه‌بندی گوگل‌تان را ارتقا می‌دهیم</p>
+        </div>
+        <div class="glass p-8 rounded-xl hover-glass text-center gsap-service-card">
+          <i class="fas fa-brain fa-3x text-[#22d3ee] mb-4"></i>
+                    <h3 class="text-2xl font-semibold text-[#22d3ee] mb-4" >وب‌سرویس‌های هوشمند با هوش مصنوعی</h3>
+          <p class="text-gray-700" >راه‌حل‌های مبتنی بر AI برای اتوماسیون، تحلیل داده‌ها و بهبود تجربه کاربری. با فناوری‌های TensorFlow و Python، وب‌سرویس‌هایی قدرتمند و مقیاس‌پذیر برای کسب‌وکار شما می‌سازیم</p>
+        </div>
+        <div class="glass p-8 rounded-xl hover-glass text-center gsap-service-card">
+          <i class="fas fa-desktop fa-3x text-[#22d3ee] mb-4"></i>
+          <h3 class="text-2xl font-semibold text-[#22d3ee] mb-4" >طراحی نرم افزار های اداری با استفاده از C#</h3>
+          <p class="text-gray-700" >ابزارهای سفارشی‌سازی‌شده برای مدیریت فرآیندهای اداری، افزایش بهره‌وری و ساده‌سازی عملیات سازمانی. نرم‌افزارهایی امن و کارآمد با رابط کاربری جذاب با استفاده از C# و .NET.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Portfolio Section -->
+  <section id="portfolio" class="py-24 bg-white ">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-5xl font-bold text-center text-[#22d3ee] mb-8 section-title gsap-section-title" data-fa="نمونه‌کارها" data-en="Portfolio">نمونه‌کارها</h2>
+      <div class="flex justify-center mb-8 space-x-4 space-x-reverse">
+        <button class="filter-btn px-6 py-2 bg-[#22d3ee] text-white rounded-full" data-filter="all">همه</button>
+        <button class="filter-btn px-6 py-2 bg-gray-200 text-gray-700 rounded-full" data-filter="web">وب</button>
+        <button class="filter-btn px-6 py-2 bg-gray-200 text-gray-700 rounded-full" data-filter="app">اپلیکیشن</button>
+        <button class="filter-btn px-6 py-2 bg-gray-200 text-gray-700 rounded-full" data-filter="ai">AI</button>
+      </div>
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="glass rounded-xl overflow-hidden hover-glass gsap-portfolio-card" data-category="app">
+          <img src="image/PortFolio/templet websit cv.png" alt="پروژه وب" class="w-full h-56 object-cover animate-image" loading="lazy">
+          <div class="p-6 text-center">
+            <h3 class="text-xl font-semibold text-[#22d3ee]">اپلیکیشن انبار پلاس</h3>
+            <p class="text-gray-700 mb-4" > توسعه داده شده با C# و .net</p>
+          </div>
+        </div>
+        <div class="glass rounded-xl overflow-hidden hover-glass gsap-portfolio-card" data-category="web">
+          <img src="image/PortFolio/Websit Kyntradeco.png" alt="پروژه وب" class="w-full h-56 object-cover animate-image" loading="lazy">
+          <div class="p-6 text-center">
+            <h3 class="text-xl font-semibold text-[#22d3ee]">وب سایت شرکت  شیمی کیهان آران ساخت</h3>
+            <p class="text-gray-700 mb-4" > توسعه داده شده با Wordpress</p>
+            <!-- <a href="path/to/demo" class="text-[#22d3ee] hover:underline" data-fa="مشاهده دمو" data-en="View Demo">مشاهده دمو</a> -->
+          </div>
+        </div>
+        <div class="glass rounded-xl overflow-hidden hover-glass gsap-portfolio-card" data-category="ai">
+          <img src="image/PortFolio/Websit Plants AI.png" alt="پروژه وب" class="w-full h-56 object-cover animate-image" loading="lazy">
+          <div class="p-6 text-center">
+            <h3 class="text-xl font-semibold text-[#22d3ee]">وب  سرویس  تشخیص گل و کیاه </h3>
+            <p class="text-gray-700 mb-4" > توسعه داده شده با python , flask</p>
+            <!-- <a href="path/to/demo" class="text-[#22d3ee] hover:underline" data-fa="مشاهده دمو" data-en="View Demo">مشاهده دمو</a> -->
+          </div>
+        </div>
+        <div class="glass rounded-xl overflow-hidden hover-glass gsap-portfolio-card" data-category="ai">
+          <img src="image/PortFolio/Website AI Tool.png" alt="پروژه وب" class="w-full h-56 object-cover animate-image" loading="lazy">
+          <div class="p-6 text-center">
+            <h3 class="text-xl font-semibold text-[#22d3ee]">وب  سرویس  تشخیص چره</h3>
+            <p class="text-gray-700 mb-4" > توسعه داده شده با python , flask, TensorFlow</p>
+            <!-- <a href="path/to/demo" class="text-[#22d3ee] hover:underline" data-fa="مشاهده دمو" data-en="View Demo">مشاهده دمو</a> -->
+          </div>
+        </div>
+        <div class="glass rounded-xl overflow-hidden hover-glass gsap-portfolio-card" data-category="web">
+          <img src="image/PortFolio/Website Yumy Play.png" alt="پروژه وب" class="w-full h-56 object-cover animate-image" loading="lazy">
+          <div class="p-6 text-center">
+            <h3 class="text-xl font-semibold text-[#22d3ee]">وب سایت یامی پلی</h3>
+            <p class="text-gray-700 mb-4" > توسعه داده شده با Wordpress</p>
+            <!-- <a href="path/to/demo" class="text-[#22d3ee] hover:underline" data-fa="مشاهده دمو" data-en="View Demo">مشاهده دمو</a> -->
+          </div>
+        </div>
+
+       
+        <div class="glass rounded-xl overflow-hidden hover-glass gsap-portfolio-card" data-category="ai">
+          <img src="image/PortFolio/Websit Plak AI.png" alt="پروژه AI" class="w-full h-56 object-cover animate-image" loading="lazy">
+          <div class="p-6 text-center">
+            <h3 class="text-xl font-semibold text-[#22d3ee]" data-fa="هوش مصنوعی" data-en="AI Solution">وب سرویس  هوشمند پلاک خوان</h3>
+            <p class="text-gray-700 mb-4" data-fa="راه‌حل‌های AI با TensorFlow." data-en="AI solutions with TensorFlow.">توسعه داده شده با djngo , python ,TensorFlow </p>
+            <!-- <a href="path/to/demo" class="text-[#22d3ee] hover:underline" data-fa="مشاهده دمو" data-en="View Demo">مشاهده دمو</a> -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Blog Section -->
+<section id="blog" class="py-20 bg-gray-50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- <h2 class="text-4xl font-bold text-center text-[#22d3ee] mb-12 section-title gsap-section-title" data-fa="وبلاگ" data-en="Blog">وبلاگ</h2>
+    <div class="grid md:grid-cols-3 gap-8">
+      <div class="glass rounded-xl overflow-hidden gsap-blog-card">
+        <img src="assets/images/blog1.webp" alt="نکات سئو" class="w-full h-48 object-cover animate-image" loading="lazy">
+        <div class="p-6 text-center">
+          <h3 class="text-lg font-semibold text-[#22d3ee] mb-2" data-fa="۵ نکته کلیدی برای بهبود سئو سایت" data-en="5 Key Tips to Improve Website SEO">۵ نکته کلیدی برای بهبود سئو سایت</h3>
+          <p class="text-gray-600 mb-3 text-sm" data-fa="با این نکات ساده، رتبه سایت خود را در گوگل ارتقا دهید." data-en="Boost your site's Google ranking with these simple tips.">با این نکات ساده، رتبه سایت خود را در گوگل ارتقا دهید.</p>
+          <p class="text-gray-500 text-xs mb-4" data-fa="۱۲ خرداد ۱۴۰۴" data-en="June 2, 2025">۱۲ خرداد ۱۴۰۴</p>
+          <a href="#blog-post-1" class="text-[#22d3ee] hover:underline text-sm cta-button" data-fa="ادامه مطلب" data-en="Read More">ادامه مطلب</a>
+        </div>
+      </div>
+      <div class="glass rounded-xl overflow-hidden gsap-blog-card">
+        <img src="assets/images/blog2.webp" alt="هوش مصنوعی" class="w-full h-48 object-cover animate-image" loading="lazy">
+        <div class="p-6 text-center">
+          <h3 class="text-lg font-semibold text-[#22d3ee] mb-2" data-fa="هوش مصنوعی و آینده وب‌سرویس‌ها" data-en="AI and the Future of Web Services">هوش مصنوعی و آینده وب‌سرویس‌ها</h3>
+          <p class="text-gray-600 mb-3 text-sm" data-fa="چگونه AI می‌تواند تجربه کاربری وب را متحول کند." data-en="How AI can transform the web user experience.">چگونه AI می‌تواند تجربه کاربری وب را متحول کند.</p>
+          <p class="text-gray-500 text-xs mb-4" data-fa="۵ خرداد ۱۴۰۴" data-en="May 26, 2025">۵ خرداد ۱۴۰۴</p>
+          <a href="#blog-post-2" class="text-[#22d3ee] hover:underline text-sm cta-button" data-fa="ادامه مطلب" data-en="Read More">ادامه مطلب</a>
+        </div>
+      </div>
+      <div class="glass rounded-xl overflow-hidden gsap-blog-card">
+        <img src="assets/images/blog3.webp" alt="نرم‌افزارهای C#" class="w-full h-48 object-cover animate-image" loading="lazy">
+        <div class="p-6 text-center">
+          <h3 class="text-lg font-semibold text-[#22d3ee] mb-2" data-fa="چرا C# برای نرم‌افزارهای اداری؟" data-en="Why C# for Office Applications?">چرا C# برای نرم‌افزارهای اداری؟</h3>
+          <p class="text-gray-600 mb-3 text-sm" data-fa="مزایای استفاده از C# در توسعه ابزارهای سازمانی." data-en="Benefits of using C# for enterprise tools.">مزایای استفاده از C# در توسعه ابزارهای سازمانی.</p>
+          <p class="text-gray-500 text-xs mb-4" data-fa="۱ خرداد ۱۴۰۴" data-en="May 22, 2025">۱ خرداد ۱۴۰۴</p>
+          <a href="#blog-post-3" class="text-[#22d3ee] hover:underline text-sm cta-button" data-fa="ادامه مطلب" data-en="Read More">ادامه مطلب</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section> -->
+
+  <!-- <section id="technologies" class="py-24 bg-white ">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-5xl font-bold text-center text-[#22d3ee] mb-16 section-title gsap-section-title" data-fa="فناوری‌های ما" data-en="Our Technologies">فناوری‌های ما</h2>
+      <div class="grid md:grid-cols-6 gap-8">
+        <img src="path/to/react.webp" alt="React" class="mx-auto h-16 opacity-70 hover:opacity-100" loading="lazy">
+        <img src="path/to/node.webp" alt="Node.js" class="mx-auto h-16 opacity-70 hover:opacity-100" loading="lazy">
+        <img src="path/to/flutter.webp" alt="Flutter" class="mx-auto h-16 opacity-70 hover:opacity-100" loading="lazy">
+        <img src="path/to/tensorflow.webp" alt="TensorFlow" class="mx-auto h-16 opacity-70 hover:opacity-100" loading="lazy">
+        <img src="path/to/figma.webp" alt="Figma" class="mx-auto h-16 opacity-70 hover:opacity-100" loading="lazy">
+        <img src="path/to/tailwind.webp" alt="Tailwind" class="mx-auto h-16 opacity-70 hover:opacity-100" loading="lazy">
+      </div>
+    </div>
+  </section>
+
+  <section id="consult" class="py-24 bg-gradient-to-b from-gray-50 to-white dark:from-gray-900">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-5xl font-bold text-center text-[#22d3ee] mb-16 section-title gsap-section-title" data-fa="شروع پروژه شما" data-en="Start Your Project">شروع پروژه شما</h2>
+      <div class="grid md:grid-cols-2 gap-12">
+        <div class="glass p-8 rounded-xl">
+          <form id="contact-form">
+            <div class="mb-6">
+              <label class="block text-gray-700 mb-2" data-fa="نام" data-en="Name">نام</label>
+              <input type="text" class="w-full p-3 rounded-lg border focus:ring-2 focus:ring-[#22d3ee]" required>
+            </div>
+            <div class="mb-6">
+              <label class="block text-gray-700 mb-2" data-fa="ایمیل" data-en="Email">ایمیل</label>
+              <input type="email" class="w-full p-3 rounded-lg border focus:ring-2 focus:ring-[#22d3ee]" required>
+            </div>
+            <div class="mb-6">
+              <label class="block text-gray-700 mb-2" data-fa="نوع پروژه" data-en="Project Type">نوع پروژه</label>
+              <select class="w-full p-3 rounded-lg border focus:ring-2 focus:ring-[#22d3ee]">
+                <option>طراحی وب</option>
+                <option>توسعه اپلیکیشن</option>
+                <option>هوش مصنوعی</option>
+                <option>دیجیتال مارکتینگ</option>
+              </select>
+            </div>
+            <div class="mb-6">
+              <label class="block text-gray-700 mb-2" data-fa="توضیحات" data-en="Description">توضیحات</label>
+              <textarea class="w-full p-3 rounded-lg border focus:ring-2 focus:ring-[#22d3ee]" rows="5"></textarea>
+            </div>
+            <button type="submit" class="bg-[#22d3ee] text-white px-8 py-3 rounded-full cta-button hover:bg-[#06b6d4]" data-fa="ارسال درخواست" data-en="Submit Request">ارسال درخواست</button>
+          </form>
+        </div>
+        <div class="flex justify-center items-center">
+          <img src="path/to/contact-illustration.webp" alt="تماس با ما" class="w-full max-w-md animate-image" loading="lazy">
+        </div>
+      </div>
+    </div>
+  </section> -->
+
+  <!-- Footer -->
+  <footer class="bg-[#22d3ee] text-white py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid md:grid-cols-4 gap-12">
+      <div class="gsap-footer-item text-center md:text-right">
+        <a href="#"><img src="image/Layer 1 (2) (1).png" alt="لوگو نورا" class="h-12 mx-auto md:mr-0" loading="lazy"></a>
+        <p class="mt-6" data-fa="نورا، شریک شما در موفقیت دیجیتال." data-en="Noura, your partner in digital success.">نورا، شریک شما در موفقیت دیجیتال.</p>
+      </div>
+      <div class="gsap-footer-item">
+        <h3 class="text-2xl font-semibold mb-6" data-fa="ارتباط با ما" data-en="Contact Us">ارتباط با ما</h3>
+        <p class="mb-3" data-fa="ایمیل: info@noura.com" data-en="Email: info@noura.com">ایمیل: info@noura.com</p>
+        <p class="mb-3" data-fa="تلفن: ۱۲۳۴۵۶۷۸۹۰" data-en="Phone: +98 123 456 7890">تلفن: ۱۲۳۴۵۶۷۸۹۰</p>
+        <p data-fa="آدرس: تهران، خیابان نمونه، پلاک ۱۲۳" data-en="Address: 123 Sample St, Tehran, Iran">آدرس: تهران، خیابان نمونه، پلاک ۱۲۳</p>
+      </div>
+      <div class="gsap-footer-item">
+        <h3 class="text-2xl font-semibold mb-6" data-fa="دسترسی سریع" data-en="Quick Links">دسترسی سریع</h3>
+        <a href="#services" class="block mb-3 text-lg" data-fa="خدمات" data-en="Services">خدمات</a>
+        <a href="#portfolio" class="block mb-3 text-lg" data-fa="نمونه‌کار" data-en="Portfolio">نمونه‌کار</a>
+        <a href="#why-us" class="block mb-3 text-lg" data-fa="چرا ما؟" data-en="Why Us?">چرا ما؟</a>
+        <a href="#contact" class="block text-lg" data-fa="تماس" data-en="Contact">تماس</a>
+      </div>
+      <div class="gsap-footer-item">
+        <h3 class="text-2xl font-semibold mb-6" data-fa="شبکه‌های اجتماعی" data-en="Social Media">شبکه‌های اجتماعی</h3>
+        <div class="flex space-x-4 space-x-reverse justify-center md:justify-start">
+          <a href="#" class="text-white hover:text-gray-200"><i class="fab fa-linkedin fa-lg"></i></a>
+          <a href="#" class="text-white hover:text-gray-200"><i class="fab fa-behance fa-lg"></i></a>
+          <a href="#" class="text-white hover:text-gray-200"><i class="fab fa-github fa-lg"></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="mt-12 text-center">
+      <p data-fa="© ۲۰۲۵ نورا. تمامی حقوق محفوظ است." data-en="© 2025 Noura. All rights reserved.">© ۲۰۲۵ نورا. تمامی حقوق محفوظ است.</p>
+    </div>
+  </footer>
+
+  <!-- Tawk.to Chat -->
+  <script>
+    var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+    (function(){
+      var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+      s1.async=true;
+      s1.src='https://embed.tawk.to/YOUR_PROPERTY_ID/default';
+      s1.charset='UTF-8';
+      s1.setAttribute('crossorigin','*');
+      s0.parentNode.insertBefore(s1,s0);
+    })();
+  </script>
+
+  <script>
+    // Theme Toggle
+    const themeToggle = document.getElementById('theme-toggle');
+    themeToggle.addEventListener('click', () => {
+      document.body.classList.toggle('dark');
+      const isDark = document.body.classList.contains('dark');
+      document.body.style.backgroundColor = isDark ? '#1f2937' : '#f9fafb';
+      themeToggle.innerHTML = isDark ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+    });
+
+    // Language Toggle
+    const langToggle = document.getElementById('lang-toggle');
+    const langText = document.getElementById('lang-text');
+    const htmlRoot = document.getElementById('html-root');
+    let isPersian = true;
+
+    function toggleLanguage() {
+      isPersian = !isPersian;
+      const lang = isPersian ? 'fa' : 'en';
+      const dir = isPersian ? 'rtl' : 'ltr';
+      const flag = isPersian ? '🇮🇷' : '🇬🇧';
+      const toggleText = isPersian ? 'English' : 'فارسی';
+
+      htmlRoot.setAttribute('lang', isPersian ? 'fa' : 'en');
+      htmlRoot.setAttribute('dir', dir);
+      langText.textContent = toggleText;
+      document.querySelector('.flag').textContent = flag;
+
+      document.querySelectorAll('[data-fa][data-en]').forEach(element => {
+        element.textContent = element.getAttribute(`data-${lang}`);
+      });
+
+      document.title = isPersian ? 'نورا - راه‌حل‌های دیجیتال خلاقانه' : 'Noura - Creative Digital Solutions';
+
+      gsap.to('body', {
+        opacity: 0,
+        duration: 0.3,
+        onComplete: () => {
+          gsap.to('body', { opacity: 1, duration: 0.3 });
+        }
+      });
+    }
+
+    langToggle.addEventListener('click', toggleLanguage);
+
+    // Toggle Mobile Menu
+    const menuToggle = document.getElementById('menu-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+    menuToggle.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+      if (!mobileMenu.classList.contains('hidden')) {
+        gsap.from('#mobile-menu a', {
+          x: isPersian ? 50 : -50,
+          opacity: 0,
+          stagger: 0.1,
+          duration: 0.5,
+          ease: 'power3.out'
+        });
+      }
+    });
+
+    // GSAP Animations
+    gsap.from('.gsap-hero-title', {
+      y: 100,
+      opacity: 0,
+      duration: 1.5,
+      ease: 'power4.out',
+      delay: 0.5
+    });
+    gsap.from('.gsap-hero-text', {
+      y: 80,
+      opacity: 0,
+      duration: 1.5,
+      ease: 'power4.out',
+      delay: 1
+    });
+    gsap.from('.gsap-hero-button', {
+      scale: 0,
+      opacity: 0,
+      duration: 1,
+      ease: 'elastic.out(1, 0.5)',
+      delay: 1.5
+    });
+    gsap.from('.gsap-hero-image', {
+      x: isPersian ? 200 : -200,
+      opacity: 0,
+      rotation: 360,
+      duration: 2,
+      ease: 'elastic.out(1, 0.5)',
+      delay: 1.8
+    });
+    gsap.from('.gsap-logo', {
+      y: -50,
+      opacity: 0,
+      duration: 1,
+      ease: 'bounce.out',
+      delay: 0.3
+    });
+
+    // Particle Animation
+    const canvas = document.getElementById('particles');
+    const ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    const particlesArray = [];
+    const numberOfParticles = 120;
+
+    class Particle {
+      constructor() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.size = Math.random() * 3 + 1;
+        this.speedX = Math.random() * 1.2 - 0.6;
+        this.speedY = Math.random() * 1.2 - 0.6;
+        this.color = `hsl(${Math.random() * 60 + 180}, 40%, 85%)`;
+      }
+      update() {
+        this.x += this.speedX;
+        this.y += this.speedY;
+        if (this.size > 0.2) this.size -= 0.008;
+        if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
+        if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
+      }
+      draw() {
+        ctx.fillStyle = this.color;
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    }
+
+    function initParticles() {
+      for (let i = 0; i < numberOfParticles; i++) {
+        particlesArray.push(new Particle());
+      }
+    }
+
+    function animateParticles() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      for (let i = 0; i < particlesArray.length; i++) {
+        particlesArray[i].update();
+        particlesArray[i].draw();
+        if (particlesArray[i].size <= 0.2) {
+          particlesArray.splice(i, 1);
+          i--;
+          particlesArray.push(new Particle());
+        }
+      }
+      requestAnimationFrame(animateParticles);
+    }
+
+    initParticles();
+    animateParticles();
+
+    window.addEventListener('resize', () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    });
+
+    // Scroll-triggered Animations
+    gsap.utils.toArray('.gsap-section-title').forEach((title) => {
+      gsap.from(title, {
+        scrollTrigger: {
+          trigger: title,
+          start: 'top 80%',
+          toggleActions: 'play none none none'
+        },
+        y: 40,
+        opacity: 0,
+        duration: 1,
+        ease: 'power3.out'
+      });
+    });
+
+    gsap.utils.toArray('.gsap-service-card').forEach((card, index) => {
+      gsap.from(card, {
+        scrollTrigger: {
+          trigger: card,
+          start: 'top 85%',
+          toggleActions: 'play none none none'
+        },
+        y: 60,
+        opacity: 0,
+        scale: 0.8,
+        duration: 1,
+        ease: 'elastic.out(1, 0.5)',
+        delay: index * 0.3
+      });
+    });
+
+    gsap.utils.toArray('.gsap-portfolio-card').forEach((card, index) => {
+      gsap.from(card, {
+        scrollTrigger: {
+          trigger: card,
+          start: 'top 85%',
+          toggleActions: 'play none none none'
+        },
+        y: 60,
+        opacity: 0,
+        scale: 0.8,
+        rotation: index % 2 === 0 ? -10 : 10,
+        duration: 1,
+        ease: 'elastic.out(1, 0.5)',
+        delay: index * 0.3
+      });
+    });
+
+    gsap.utils.toArray('.gsap-footer-item').forEach((item, index) => {
+      gsap.from(item, {
+        scrollTrigger: {
+          trigger: item,
+          start: 'top 90%',
+          toggleActions: 'play none none none'
+        },
+        y: 40,
+        opacity: 0,
+        duration: 1,
+        ease: 'power3.out',
+        delay: index * 0.3
+      });
+    });
+
+    // Portfolio Filter
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const filter = btn.getAttribute('data-filter');
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('bg-[#22d3ee]', 'text-white'));
+        btn.classList.add('bg-[#22d3ee]', 'text-white');
+        document.querySelectorAll('.gsap-portfolio-card').forEach(card => {
+          card.style.display = (filter === 'all' || card.getAttribute('data-category') === filter) ? 'block' : 'none';
+        });
+      });
+    });
+
+    // Glass Card Hover Effects
+    document.querySelectorAll('.glass').forEach((card) => {
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        gsap.to(card, {
+          rotationY: (x - rect.width / 2) / 20,
+          rotationX: -(y - rect.height / 2) / 20,
+          duration: 0.5,
+          ease: 'power2.out'
+        });
+      });
+      card.addEventListener('mouseleave', () => {
+        gsap.to(card, {
+          rotationY: 0,
+          rotationX: 0,
+          duration: 0.5,
+          ease: 'power2.out'
+        });
+      });
+    });
+  </script>
+</body>
+</html>
